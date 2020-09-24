@@ -1,9 +1,14 @@
 version: '3'
-
 services:
+
   nlu:
     build: './nlu'
     environment:
       - DP_SETTINGS_PATH=./deeppavlov-settings
+    ports:
+    - 5000:5000
+
   chatbot:
     build: './chatbot'
+    ports:
+    - 3000:3000

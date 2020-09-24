@@ -144,7 +144,7 @@ module.exports = function(controller) {
 
         try {
             const body = await request({
-                url: 'http://localhost:4949/go-bot',
+                url: 'http://51.75.196.152:4949/go-bot',
                 method: 'POST',
                 json: {
                     context: [
