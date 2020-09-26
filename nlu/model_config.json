@@ -1,7 +1,7 @@
 {
   "dataset_reader": {
     "class_name": "dstc2_reader",
-    "data_path": "{DOWNLOADS_PATH}/dstc2"
+    "data_path": "/opt/data/downloads/dstc2"
   },
   "dataset_iterator": {
     "class_name": "dialog_iterator"
@@ -21,13 +21,13 @@
         "id": "token_vocab",
         "fit_on": ["x_tokens"],
         "class_name": "simple_vocab",
-        "save_path": "{MODELS_PATH}/gobot_dstc2_best/word.dict",
-        "load_path": "{MODELS_PATH}/gobot_dstc2_best/word.dict"
+        "save_path": "/opt/data/models/gobot_dstc2_best/word.dict",
+        "load_path": "/opt/data/models/gobot_dstc2_best/word.dict"
       },
       {
         "class_name": "custom_network",
-        "load_path": "{MODELS_PATH}/gobot_dstc2_best/model",
-        "save_path": "{MODELS_PATH}/gobot_dstc2_best/model",
+        "load_path": "/opt/data/models/gobot_dstc2_best/model",
+        "save_path": "/opt/data/models/gobot_dstc2_best/model",
         "in": ["x"],
         "in_y": ["y"],
         "out": ["y_predicted"],
@@ -65,7 +65,7 @@
         },
         "embedder": {
           "class_name": "fasttext",
-          "load_path": "{DOWNLOADS_PATH}/embeddings/wiki.en.bin"
+          "load_path": "/opt/data/downloads/embeddings/wiki.en.bin"
         },
         "bow_embedder": null,
         "tokenizer": {
@@ -99,7 +99,7 @@
   },
   "metadata": {
     "variables": {
-      "ROOT_PATH": "~/.deeppavlov",
+      "ROOT_PATH": "/opt/data",
       "DOWNLOADS_PATH": "{ROOT_PATH}/downloads",
       "MODELS_PATH": "{ROOT_PATH}/models"
     },
@@ -116,15 +116,15 @@
     "download": [
       {
         "url": "http://files.deeppavlov.ai/deeppavlov_data/gobot_dstc2_best_v3.tar.gz",
-        "subdir": "{MODELS_PATH}"
+        "subdir": "/opt/data/models"
       },
       {
         "url": "http://files.deeppavlov.ai/datasets/dstc2_v2.tar.gz",
-        "subdir": "{DOWNLOADS_PATH}/dstc2"
+        "subdir": "/opt/data/downloads/dstc2"
       },
       {
         "url": "http://files.deeppavlov.ai/deeppavlov_data/embeddings/wiki.en.bin",
-        "subdir": "{DOWNLOADS_PATH}/embeddings"
+        "subdir": "/opt/data/downloads/embeddings"
       }
     ],
     "imports": ["custom_network"]

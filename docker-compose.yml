@@ -1,14 +1,31 @@
-version: '3'
+---
+version: '3.8'
 services:
 
-  nlu:
-    build: './nlu'
-    environment:
-      - DP_SETTINGS_PATH=./deeppavlov-settings
+  nlu: &nlu_base
+    image: lucmichalski/dp-resto:gpu-latest
+    build:
+      context: ./nlu
+      dockerfile: Dockerfile
+    volumes:
+    - dp-data:/opt/data
+    - ${PWD}:/usr/src/app
+    working_dir: /usr/src/app/nlu
+
+  cat:
+    <<: *nlu_base
+    command: ls -l ./datasets/citymoove
+
+  fetch:
+    <<: *nlu_base
+    command: ./download.sh
+
+  server:
+    <<: *nlu_base
     ports:
     - 5000:5000
+    command: [ "python3", "-m", "deeppavlov", "riseapi", "model_config.json", "-p", "5000"]
 
-  chatbot:
-    build: './chatbot'
-    ports:
-    - 3000:3000
+volumes:
+  dp-data:
+  
