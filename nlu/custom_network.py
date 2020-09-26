@@ -24,7 +24,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.contrib.layers import xavier_initializer as xav
 
-import deeppavlov.models.go_bot.templates as templ
+import deeppavlov.models.go_bot.nlg.templates.templates as templ
 from deeppavlov.core.commands.utils import expand_path
 from deeppavlov.core.common.errors import ConfigError
 from deeppavlov.core.common.registry import register
@@ -32,7 +32,9 @@ from deeppavlov.core.layers import tf_attention_mechanisms as am
 from deeppavlov.core.layers import tf_layers
 from deeppavlov.core.models.component import Component
 from deeppavlov.core.models.tf_model import LRScheduledTFModel
-from deeppavlov.models.go_bot.tracker import Tracker
+# from deeppavlov.models.go_bot.tracker import Tracker
+# from deeppavlov.models.go_bot.tracker import TrackerInterface
+from deeppavlov.models.go_bot.tracker.tracker_interface import TrackerInterface
 
 log = getLogger(__name__)
 
@@ -115,7 +117,7 @@ class GoalOrientedBot(LRScheduledTFModel):
 
     def __init__(self,
                  tokenizer: Component,
-                 tracker: Tracker,
+                 tracker: TrackerInterface,
                  template_path: str,
                  save_path: str,
                  hidden_size: int = 128,
